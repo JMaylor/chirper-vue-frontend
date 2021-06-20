@@ -6,6 +6,8 @@
       dark:bg-black
       fixed
       top-0
+      left-0
+      md:pl-40
       h-12
       w-full
       flex

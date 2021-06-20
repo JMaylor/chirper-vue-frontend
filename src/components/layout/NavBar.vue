@@ -10,6 +10,7 @@
       bottom-0
       md:left-0
       border-t border-gray-500
+      md:border-t-0 md:border-r
     "
   >
     <div

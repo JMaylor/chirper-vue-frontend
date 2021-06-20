@@ -12,6 +12,7 @@
     class="
       fixed
       bottom-16
+      md:bottom-6
       right-6
       bg-blue-500
       h-16
