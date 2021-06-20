@@ -13,24 +13,27 @@
           </span>
           <span>{{ chirp.author.handle }}</span
           ><span>•</span>
-          <span class="text-gray-500 text-sm">{{ time }}</span>
+          <span class="text-sm">{{ time }}</span>
         </div>
         <span>{{ chirp.text }}</span>
-        <div class="flex justify-between items-center pr-8 text-gray-700">
-          <font-awesome-icon :icon="['far', 'comment']" />
-          <div class="flex items-center space-x-1">
+        <div class="flex justify-between items-center pr-8 text-gray-500">
+          <div class="flex items-center space-x-2">
+            <font-awesome-icon :icon="['far', 'comment']" />
+            <span class="text-sm">{{ chirp.comments.length }}</span>
+          </div>
+          <div class="flex items-center space-x-2">
             <font-awesome-icon
               @click="toggleLike"
               :icon="['far', 'heart']"
-              :color="chirp.liked ? 'red' : 'black'"
+              :color="chirp.liked ? 'fuchsia' : null"
               class="transition"
             /><span class="text-sm">{{ chirp.likes }}</span>
           </div>
-          <div class="flex items-center space-x-1">
+          <div class="flex items-center space-x-2">
             <font-awesome-icon
               @click="toggleRechirp"
               :icon="['fas', 'retweet']"
-              :color="chirp.rechirped ? 'green' : 'black'"
+              :color="chirp.rechirped ? 'green' : null"
               class="transition"
             /><span class="text-sm">{{ chirp.rechirps }}</span>
           </div>

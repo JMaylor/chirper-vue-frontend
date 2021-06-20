@@ -22,7 +22,9 @@
       <span class="text-2xl font-bold">{{ $route.name }}</span>
     </div>
     <div class="flex items-center space-x-4">
-      <span class="text-gray-700 italic">{{ user.handle }}</span>
+      <span class="text-gray-700 dark:text-gray-400 italic">{{
+        user.handle
+      }}</span>
       <img :src="user.picture" alt="profile" class="rounded-full h-8" />
     </div>
   </header>
