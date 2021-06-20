@@ -2,6 +2,7 @@
   <div class="p-4 w-full">
     <div class="flex w-full space-x-2">
       <img
+        referrerpolicy="no-referrer"
         :src="chirp.author.picture"
         :alt="chirp.author.name"
         class="h-12 rounded-full"

@@ -25,7 +25,12 @@
       <span class="text-gray-700 dark:text-gray-400 italic">{{
         user.handle
       }}</span>
-      <img :src="user.picture" alt="profile" class="rounded-full h-8" />
+      <img
+        :src="user.picture"
+        alt="profile"
+        class="rounded-full h-8"
+        referrerpolicy="no-referrer"
+      />
     </div>
   </header>
 </template>
