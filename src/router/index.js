@@ -24,6 +24,11 @@ const routes = [
         component: () => import("@/views/Liked.vue"),
       },
       {
+        path: "/compose",
+        name: "Compose",
+        component: () => import("@/views/Compose.vue"),
+      },
+      {
         path: "/user/:userId",
         name: "User",
         component: () => import("@/views/User.vue"),
