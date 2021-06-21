@@ -15,9 +15,11 @@
             ><span
               class="font-bold mr-2 group-hover:underline group-focus:underline"
               >{{ chirp.author.name }}</span
-            >{{ chirp.author.handle }}</router-link
-          ><span>•</span>
-          <span class="text-sm">{{ time }}</span>
+            ><span class="text-gray-500">{{
+              chirp.author.handle
+            }}</span></router-link
+          ><span class="text-gray-500">•</span>
+          <span class="text-sm text-gray-500">{{ time }}</span>
         </div>
         <span>{{ chirp.text }}</span>
         <div class="flex justify-between items-center pr-8 text-gray-500">
