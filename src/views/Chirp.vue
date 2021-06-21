@@ -24,13 +24,13 @@
       };
     },
     methods: {
-      toggleLike(event) {
-        this.chirp.liked = event;
-        this.chirp.likes += event ? 1 : -1;
+      toggleLike(value) {
+        this.chirp.liked = value;
+        this.chirp.likes += value ? 1 : -1;
       },
-      toggleRechirp(event) {
-        this.chirp.rechirped = event;
-        this.chirp.rechirps += event ? 1 : -1;
+      toggleRechirp(value) {
+        this.chirp.rechirped = value;
+        this.chirp.rechirps += value ? 1 : -1;
       },
     },
     async mounted() {
