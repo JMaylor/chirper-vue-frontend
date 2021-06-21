@@ -59,6 +59,7 @@
           { name: "Search", icon: "search" },
           { name: "Liked", icon: ["far", "heart"] },
           { name: "Settings", icon: "cog" },
+          { name: "Compose", icon: "feather-alt" },
         ],
       };
     },
