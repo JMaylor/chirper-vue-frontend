@@ -1,7 +1,7 @@
 <template>
   <div
     class="
-      w-screen
+      w-full
       min-h-screen
       bg-white
       dark:bg-black
@@ -12,7 +12,7 @@
     <div class="container mx-auto max-w-4xl h-full">
       <HeaderBar />
       <NavBar />
-      <div class="h-full w-full py-12 md:pb-0 md:pl-16 overflow-y-auto">
+      <div class="h-full w-full py-12 md:pb-0 md:pl-16">
         <router-view class="border-r border-gray-500 h-full" />
         <router-link
           v-if="$route.name != 'Compose'"
