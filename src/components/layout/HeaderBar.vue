@@ -47,7 +47,7 @@
     async mounted() {
       const token = await this.$auth.getTokenSilently();
       console.log(token);
-      const response = await axios.get("api/profile", {
+      const response = await axios.get("/api/profile", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

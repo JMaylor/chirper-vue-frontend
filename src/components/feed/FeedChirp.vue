@@ -79,7 +79,7 @@
           const {
             data: { like },
           } = await axios.post(
-            `api/chirps/${this.chirp._id.$oid}/like`,
+            `/api/chirps/${this.chirp._id.$oid}/like`,
             {},
             {
               headers: {
@@ -101,7 +101,7 @@
           const {
             data: { rechirp },
           } = await axios.post(
-            `api/chirps/${this.chirp._id.$oid}/rechirp`,
+            `/api/chirps/${this.chirp._id.$oid}/rechirp`,
             {},
             {
               headers: {

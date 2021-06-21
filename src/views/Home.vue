@@ -61,7 +61,7 @@
     },
     async mounted() {
       const token = await this.$auth.getTokenSilently();
-      const { data } = await axios.get("api/chirps", {
+      const { data } = await axios.get("/api/chirps", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
