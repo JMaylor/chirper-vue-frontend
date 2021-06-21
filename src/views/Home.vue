@@ -8,23 +8,6 @@
       @rechirped="toggleRechirp($event, chirp)"
     />
   </div>
-  <div
-    class="
-      fixed
-      bottom-16
-      md:bottom-6
-      right-6
-      bg-blue-500
-      h-16
-      w-16
-      rounded-full
-      flex
-      items-center
-      justify-center
-    "
-  >
-    <font-awesome-icon icon="feather-alt" size="lg" class="text-white" />
-  </div>
 </template>
 
 <script>
