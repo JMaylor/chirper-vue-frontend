@@ -32,7 +32,7 @@
   import axios from "axios";
 
   export default {
-    name: "Liked",
+    name: "User",
     components: {
       FeedChirp,
     },
@@ -40,14 +40,6 @@
       return {
         chirps: [],
       };
-    },
-    computed: {
-      user() {
-        return this.$auth.user.value;
-      },
-      name() {
-        return this.user.name;
-      },
     },
     methods: {
       toggleLike(event, chirp) {
@@ -61,18 +53,12 @@
     },
     async mounted() {
       const token = await this.$auth.getTokenSilently();
-      const { data } = await axios.get("/api/chirps/liked", {
+      const { data } = await axios.get(`/api/user/${this.$route.params.userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      this.chirps = data.map(({ chirp, like, rechirp }) => {
-        return {
-          ...chirp,
-          liked: like,
-          rechirped: rechirp,
-        };
-      });
+      this.chirps = data;
     },
   };
 </script>

@@ -24,6 +24,11 @@ const routes = [
         component: () => import("@/views/Liked.vue"),
       },
       {
+        path: "/user/:userId",
+        name: "User",
+        component: () => import("@/views/User.vue"),
+      },
+      {
         path: "/search",
         name: "Search",
         component: () => import("@/views/Search.vue"),
