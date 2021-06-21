@@ -12,7 +12,9 @@
           <span class="font-bold">
             {{ chirp.author.name }}
           </span>
-          <span>{{ chirp.author.handle }}</span
+          <router-link
+            :to="{ name: 'User', params: { userId: chirp.author._id.$oid } }"
+            >{{ chirp.author.handle }}</router-link
           ><span>•</span>
           <span class="text-sm">{{ time }}</span>
         </div>
