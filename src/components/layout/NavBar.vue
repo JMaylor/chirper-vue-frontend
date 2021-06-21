@@ -1,14 +1,14 @@
 <template>
   <nav
     class="
+      w-full
+      md:w-16
+      md:h-full
       bg-white
       dark:bg-black
-      w-full
-      md:w-36
-      md:h-full
       fixed
       bottom-0
-      md:left-0
+      md:block
       border-t border-gray-500
       md:border-t-0 md:border-r
     "
@@ -18,6 +18,9 @@
         w-full
         h-12
         md:h-full
+        md:space-y-6
+        md:items-center
+        md:p-4
         flex
         md:flex-col
         justify-between

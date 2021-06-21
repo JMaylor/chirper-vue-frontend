@@ -2,7 +2,6 @@
   <div
     class="
       w-screen
-      h-screen
       min-h-screen
       bg-white
       dark:bg-black
@@ -10,11 +9,11 @@
       dark:text-white
     "
   >
-    <div class="mx-auto h-full md:pl-36">
+    <div class="container mx-auto max-w-4xl h-full">
       <HeaderBar />
       <NavBar />
-      <div class="h-full w-full py-12 md:pb-0 overflow-y-auto">
-        <router-view />
+      <div class="h-full w-full py-12 md:pb-0 md:pl-16 overflow-y-auto">
+        <router-view class="border-r border-gray-500 h-full" />
         <router-link
           v-if="$route.name != 'Compose'"
           :to="{ name: 'Compose' }"
