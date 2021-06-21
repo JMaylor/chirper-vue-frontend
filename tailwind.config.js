@@ -9,7 +9,13 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      backgroundOpacity: ["group-focus-visible"],
+      ringColor: ["group-focus-visible"],
+      ringWidth: ["group-focus-visible"],
+      textColor: ["focus-visible"],
+      textDecoration: ["group-focus"],
+    },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-interaction-variants")],
 };
