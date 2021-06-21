@@ -34,6 +34,11 @@ const routes = [
         component: () => import("@/views/User.vue"),
       },
       {
+        path: "/chirp/:chirpId",
+        name: "Chirp",
+        component: () => import("@/views/Chirp.vue"),
+      },
+      {
         path: "/search",
         name: "Search",
         component: () => import("@/views/Search.vue"),
