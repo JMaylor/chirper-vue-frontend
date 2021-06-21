@@ -24,14 +24,6 @@
         chirps: [],
       };
     },
-    computed: {
-      user() {
-        return this.$auth.user.value;
-      },
-      name() {
-        return this.user.name;
-      },
-    },
     methods: {
       toggleLike(event, chirp) {
         chirp.liked = event;
