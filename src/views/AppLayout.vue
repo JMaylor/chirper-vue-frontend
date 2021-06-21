@@ -30,3 +30,9 @@
     },
   };
 </script>
+
+<style lang="scss">
+  html {
+    @apply overflow-y-scroll;
+  }
+</style>
