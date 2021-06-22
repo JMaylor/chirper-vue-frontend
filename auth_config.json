@@ -1,6 +1,0 @@
-{
-  "domain": "chirper.eu.auth0.com",
-  "client_id": "eBrWGYOwukp1smmB51hZ0Vok2W3rcjYa",
-  "redirect_uri": "http://localhost:3000/callback",
-  "audience": "https://chirper.api"
-}

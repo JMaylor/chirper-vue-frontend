@@ -50,7 +50,12 @@ app.use(PrimeVue);
 app.component("AutoComplete", AutoComplete);
 
 // auth0
-import authConfig from "../auth_config.json";
+const authConfig = {
+  domain: import.meta.env.VITE_DOMAIN,
+  client_id: import.meta.env.VITE_CLIENT_ID,
+  redirect_uri: import.meta.env.VITE_REDIRECT_URI,
+  audience: import.meta.env.VITE_AUDIENCE,
+};
 import { setupAuth } from "./auth";
 function callbackRedirect(appState) {
   router.push(appState && appState.targetUrl ? appState.targetUrl : "/");
