@@ -43,6 +43,12 @@ library.add(
 );
 app.component("font-awesome-icon", FontAwesomeIcon);
 
+// primevue
+import PrimeVue from "primevue/config";
+import AutoComplete from "primevue/autocomplete";
+app.use(PrimeVue);
+app.component("AutoComplete", AutoComplete);
+
 // auth0
 import authConfig from "../auth_config.json";
 import { setupAuth } from "./auth";
