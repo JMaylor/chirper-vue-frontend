@@ -48,7 +48,7 @@
             relative
             bg-center
           "
-          style="background-image: url('/src/assets/landing.png')"
+          style="background-image: url('/landing.png')"
         >
           <div class="h-full w-full absolute bg-black bg-opacity-30"></div>
           <font-awesome-icon
