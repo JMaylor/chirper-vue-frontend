@@ -21,7 +21,7 @@
           ><span class="text-gray-500">•</span>
           <span class="text-sm text-gray-500">{{ time }}</span>
         </div>
-        <span>{{ chirp.text }}</span>
+        <span class="whitespace-pre-wrap">{{ chirp.text }}</span>
         <div class="flex justify-between items-center pr-8 text-gray-500">
           <!-- Comment -->
           <div class="flex items-center space-x-2">
