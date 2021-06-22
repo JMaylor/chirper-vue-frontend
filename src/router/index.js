@@ -44,6 +44,11 @@ const routes = [
         component: () => import("@/views/Search.vue"),
       },
       {
+        path: "/hashtag/:hashtag",
+        name: "Hashtag",
+        component: () => import("@/views/Hashtag.vue"),
+      },
+      {
         path: "/settings",
         name: "Settings",
         component: () => import("@/views/Settings.vue"),
