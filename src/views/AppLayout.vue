@@ -9,7 +9,7 @@
       dark:text-white
     "
   >
-    <div class="container mx-auto max-w-4xl h-full">
+    <div class="container mx-auto max-w-2xl h-full">
       <HeaderBar />
       <NavBar />
       <div class="h-full w-full py-12 md:pb-0 md:pl-16">

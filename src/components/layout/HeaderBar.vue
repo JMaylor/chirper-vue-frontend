@@ -8,7 +8,7 @@
       top-0
       container
       mx-auto
-      max-w-4xl
+      max-w-2xl
       md:pl-16
     "
   >
