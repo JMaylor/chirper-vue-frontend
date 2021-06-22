@@ -51,10 +51,11 @@
                 transition
                 duration-200
                 bg-opacity-0 bg-pink-900
-                group-hover:bg-opacity-30
-                group-focus-visible:bg-opacity-30
-                group-focus-visible:ring-2
-                group-focus-visible:ring-pink-500
+                group-hover:bg-opacity-10
+                dark:group-hover:bg-opacity-30
+                group-focus-visible:bg-opacity-10
+                dark:group-focus-visible:bg-opacity-30
+                group-focus-visible:ring-2 group-focus-visible:ring-pink-500
               "
             >
               <svg
@@ -99,10 +100,11 @@
                 transition
                 duration-200
                 bg-opacity-0 bg-green-900
-                group-hover:bg-opacity-30
-                group-focus-visible:bg-opacity-30
-                group-focus-visible:ring-2
-                group-focus-visible:ring-green-500
+                group-hover:bg-opacity-10
+                dark:group-hover:bg-opacity-30
+                group-focus-visible:bg-opacity-10
+                dark:group-focus-visible:bg-opacity-30
+                group-focus-visible:ring-2 group-focus-visible:ring-green-500
               "
             >
               <svg
