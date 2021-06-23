@@ -1,1 +1,0 @@
-abacus from svgrepo - animated by me
