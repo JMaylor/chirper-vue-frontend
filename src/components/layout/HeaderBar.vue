@@ -33,7 +33,10 @@
         <img
           :src="user.picture"
           alt="profile"
-          class="rounded-full h-8"
+          class="rounded-full h-8 cursor-pointer"
+          @click="
+            $router.push({ name: 'User', params: { userId: user._id.$oid } })
+          "
           referrerpolicy="no-referrer"
         />
       </div>
