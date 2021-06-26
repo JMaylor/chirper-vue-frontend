@@ -15,7 +15,7 @@
       <div class="h-full w-full py-12 md:pb-0 md:pl-16">
         <router-view
           v-if="initialised"
-          @refresh-user="getUser"
+          @refreshuser="getUser"
           class="border-r border-gray-500 h-full"
         />
       </div>

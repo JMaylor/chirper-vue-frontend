@@ -139,7 +139,7 @@
               Authorization: `Bearer ${token}`,
             },
           });
-          this.$emit("refresh-user");
+          this.$emit("refreshuser");
           this.$router.push("/home");
         } catch (err) {
           alert(err);
