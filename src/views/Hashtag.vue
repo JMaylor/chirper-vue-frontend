@@ -1,5 +1,5 @@
 <template>
-  results by hashtag
+  <h3 class="italic px-4 text-2xl">#{{ hashtag }}</h3>
   <div class="divide-y divide-gray-500">
     <FeedChirp
       v-for="chirp in chirps"

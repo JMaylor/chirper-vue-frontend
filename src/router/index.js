@@ -47,11 +47,13 @@ const routes = [
         path: "/search",
         name: "Search",
         component: () => import("@/views/Search.vue"),
-      },
-      {
-        path: "/hashtag/:hashtag",
-        name: "Hashtag",
-        component: () => import("@/views/Hashtag.vue"),
+        children: [
+          {
+            path: "/hashtag/:hashtag",
+            name: "Hashtag",
+            component: () => import("@/views/Hashtag.vue"),
+          },
+        ],
       },
       {
         path: "/settings",

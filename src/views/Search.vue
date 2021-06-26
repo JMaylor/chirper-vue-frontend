@@ -8,6 +8,7 @@
     >
     </AutoComplete>
   </div>
+  <router-view />
 </template>
 
 <script>
