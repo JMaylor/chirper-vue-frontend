@@ -21,7 +21,8 @@
           ><span class="text-gray-500">•</span>
           <span class="text-sm text-gray-500">{{ time }}</span>
         </div>
-        <span class="whitespace-pre-wrap">{{ chirp.text }}</span>
+        <ChirpWithLinks :text="chirp.text" />
+        <!-- <span class="whitespace-pre-wrap">{{ chirp.text }}</span> -->
         <div class="flex justify-between items-center pr-8 text-gray-500">
           <!-- Comment -->
           <div class="flex items-center space-x-2">
@@ -177,14 +178,18 @@
 </template>
 
 <script>
+  import axios from "axios";
   import dayjs from "dayjs";
   import relativeTime from "dayjs/plugin/relativeTime";
   dayjs.extend(relativeTime);
 
-  import axios from "axios";
+  import ChirpWithLinks from "./ChirpWithLinks.vue";
 
   export default {
     name: "FeedChirp",
+    components: {
+      ChirpWithLinks,
+    },
     props: {
       chirp: { type: Object, required: true },
     },
@@ -196,7 +201,16 @@
     },
     computed: {
       time() {
-        return this.dateFromObjectId(this.chirp._id.$oid).fromNow();
+        return this.dateFromObjectId(this.chirp._id.$oid).fromNow(true);
+      },
+      textWithLinks() {
+        return this.chirp.text.replace(
+          /#(\w+)/g,
+          '<router-link to="tag/$1">#$1</router-link>'
+        );
+      },
+      words() {
+        return this.chirp.text.split(" ");
       },
     },
     methods: {

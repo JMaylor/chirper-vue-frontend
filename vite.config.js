@@ -11,6 +11,7 @@ export default ({ mode }) => {
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "/src"),
+        vue: "vue/dist/vue.esm-bundler.js",
       },
     },
     server: {
