@@ -2,7 +2,6 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import "./index.css";
-import dayjs from "dayjs";
 
 // core
 const app = createApp(App).use(router);
@@ -59,15 +58,6 @@ import { setupAuth } from "./auth";
 function callbackRedirect(appState) {
   router.push(appState && appState.targetUrl ? appState.targetUrl : "/");
 }
-
-// mixin
-app.mixin({
-  methods: {
-    dateFromObjectId(objectId) {
-      return dayjs(parseInt(objectId.substring(0, 8), 16) * 1000);
-    },
-  },
-});
 
 setupAuth(authConfig, callbackRedirect).then((auth) => {
   app.use(auth).mount("#app");

@@ -27,9 +27,9 @@
       searchHashtags: debounce(async function () {
         if (this.query == "") return (this.hashtags = []);
         const { data: hashtags } = await axios.get(
-          `/api/hashtags?query=${this.query}`
+          `/api/hashtags/search/${this.query}`
         );
-        this.hashtags = hashtags.map(({ name }) => name);
+        this.hashtags = hashtags.map(({ tag }) => tag);
       }, 200),
       select({ value }) {
         this.$router.push(`/hashtag/${value}`);

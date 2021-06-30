@@ -3,31 +3,31 @@
     <div class="flex w-full space-x-2">
       <img
         referrerpolicy="no-referrer"
-        :src="chirp.author.picture"
-        :alt="chirp.author.name"
+        :src="chirp.picture"
+        :alt="chirp.user_name"
         class="h-12 rounded-full"
       />
       <div class="space-y-2 flex-grow">
-        <div class="flex space-x-2 items-center">
+        <div class="flex space-x-2 items-center whitespace-nowrap">
           <router-link
             class="rounded-full group focus:outline-none"
-            :to="{ name: 'User', params: { userId: chirp.author._id.$oid } }"
+            :to="{ name: 'User', params: { userId: chirp.handle } }"
             ><span
               class="font-bold mr-2 group-hover:underline group-focus:underline"
-              >{{ chirp.author.name }}</span
-            ><span class="text-gray-500">{{
-              chirp.author.handle
-            }}</span></router-link
+              >{{ chirp.user_name }}</span
+            ><span class="text-gray-500"
+              >@{{ truncatedHandle }}</span
+            ></router-link
           ><span class="text-gray-500">•</span>
           <span class="text-sm text-gray-500">{{ time }}</span>
         </div>
-        <ChirpWithLinks :text="chirp.text" />
+        <ChirpWithLinks :text="chirp.body" />
         <!-- <span class="whitespace-pre-wrap">{{ chirp.text }}</span> -->
         <div class="flex justify-between items-center pr-8 text-gray-500">
           <!-- Comment -->
           <div class="flex items-center space-x-2">
             <font-awesome-icon :icon="['far', 'comment']" />
-            <span class="text-sm">{{ chirp.comments.length }}</span>
+            <!-- <span class="text-sm">{{ chirp.comments.length }}</span> -->
           </div>
 
           <!-- Like -->
@@ -179,10 +179,10 @@
 
 <script>
   import axios from "axios";
-  import dayjs from "dayjs";
-  import relativeTime from "dayjs/plugin/relativeTime";
-  dayjs.extend(relativeTime);
-
+  import TimeAgo from "javascript-time-ago";
+  import en from "javascript-time-ago/locale/en";
+  TimeAgo.locale(en);
+  const timeAgo = new TimeAgo("en-GB");
   import ChirpWithLinks from "./ChirpWithLinks.vue";
 
   export default {
@@ -201,16 +201,23 @@
     },
     computed: {
       time() {
-        return this.dateFromObjectId(this.chirp._id.$oid).fromNow(true);
+        // return dayjs(this.chirp.created_at).fromNow();
+        return timeAgo.format(new Date(this.chirp.created_at), "twitter");
       },
       textWithLinks() {
-        return this.chirp.text.replace(
+        return this.chirp?.body?.replace(
           /#(\w+)/g,
           '<router-link to="tag/$1">#$1</router-link>'
         );
       },
-      words() {
-        return this.chirp.text.split(" ");
+      availableHandleLength() {
+        return 26 - this.chirp.user_name.length;
+      },
+      truncatedHandle() {
+        const handle = this.chirp.handle;
+        if (!handle) return "";
+        if (handle.length < this.availableHandleLength) return handle;
+        return `${handle.substr(0, this.availableHandleLength - 3)}...`;
       },
     },
     methods: {
@@ -219,18 +226,19 @@
         this.likeDisabled = true;
         try {
           const token = await this.$auth.getTokenSilently();
-          const {
-            data: { like },
-          } = await axios.post(
-            `/api/chirps/${this.chirp._id.$oid}/like`,
-            {},
+          await axios.post(
+            `/api/like`,
+            {
+              chirp: this.chirp.chirp_id,
+              liked: !this.chirp.liked,
+            },
             {
               headers: {
                 Authorization: `Bearer ${token}`,
               },
             }
           );
-          this.$emit("liked", like);
+          this.$emit("liked", !this.chirp.liked);
         } catch (error) {
           console.log(error);
         }
@@ -241,18 +249,19 @@
         this.rechirpDisabled = true;
         try {
           const token = await this.$auth.getTokenSilently();
-          const {
-            data: { rechirp },
-          } = await axios.post(
-            `/api/chirps/${this.chirp._id.$oid}/rechirp`,
-            {},
+          await axios.post(
+            `/api/rechirp`,
+            {
+              chirp: this.chirp.chirp_id,
+              rechirped: !this.chirp.rechirped,
+            },
             {
               headers: {
                 Authorization: `Bearer ${token}`,
               },
             }
           );
-          this.$emit("rechirped", rechirp);
+          this.$emit("rechirped", !this.chirp.rechirped);
         } catch (error) {
           console.log(error);
         }

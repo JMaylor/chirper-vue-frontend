@@ -14,7 +14,7 @@
     <div
       class="
         px-4
-        border-r
+        md:border-r
         h-12
         flex
         items-center
@@ -27,15 +27,15 @@
         <span class="text-2xl font-bold">{{ $route.name }}</span>
       </div>
       <div class="flex items-center space-x-4" v-if="user">
-        <span class="text-gray-700 dark:text-gray-400 italic">{{
-          user.handle
-        }}</span>
+        <span class="text-gray-700 dark:text-gray-400 italic"
+          >@{{ user.handle }}</span
+        >
         <img
           :src="user.picture"
           alt="profile"
           class="rounded-full h-8 cursor-pointer"
           @click="
-            $router.push({ name: 'User', params: { userId: user._id.$oid } })
+            $router.push({ name: 'User', params: { userId: user.user_id } })
           "
           referrerpolicy="no-referrer"
         />

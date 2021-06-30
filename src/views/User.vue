@@ -2,7 +2,7 @@
   <div class="divide-y divide-gray-500">
     <FeedChirp
       v-for="chirp in chirps"
-      :key="chirp._id.$oid"
+      :key="chirp.chirp_id"
       :chirp="chirp"
       @liked="toggleLike($event, chirp)"
       @rechirped="toggleRechirp($event, chirp)"
@@ -53,11 +53,14 @@
     },
     async mounted() {
       const token = await this.$auth.getTokenSilently();
-      const { data } = await axios.get(`/api/user/${this.$route.params.userId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const { data } = await axios.get(
+        `/api/chirps/user/${this.$route.params.userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       this.chirps = data;
     },
   };

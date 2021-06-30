@@ -123,9 +123,8 @@
       },
       formData() {
         return {
-          email: this.user.email,
-          name: this.name,
-          handle: `@${this.handle}`,
+          user_name: this.name,
+          handle: this.handle,
           picture: this.user.picture,
         };
       },
@@ -134,7 +133,7 @@
       async signUp() {
         const token = await this.$auth.getTokenSilently();
         try {
-          await axios.post("/api/auth/signup", this.formData, {
+          await axios.post("/api/users", this.formData, {
             headers: {
               Authorization: `Bearer ${token}`,
             },

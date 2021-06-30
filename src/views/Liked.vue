@@ -2,7 +2,7 @@
   <div class="divide-y divide-gray-500">
     <FeedChirp
       v-for="chirp in chirps"
-      :key="chirp._id.$oid"
+      :key="chirp.chirp_id"
       :chirp="chirp"
       @liked="toggleLike($event, chirp)"
       @rechirped="toggleRechirp($event, chirp)"
@@ -49,13 +49,8 @@
           Authorization: `Bearer ${token}`,
         },
       });
-      this.chirps = data.map(({ chirp, like, rechirp }) => {
-        return {
-          ...chirp,
-          liked: like,
-          rechirped: rechirp,
-        };
-      });
+      console.log(data);
+      this.chirps = data;
     },
   };
 </script>

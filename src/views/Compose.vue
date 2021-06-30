@@ -35,7 +35,7 @@
           await axios.post(
             "/api/chirps",
             {
-              text: this.text,
+              body: this.text,
             },
             {
               headers: {

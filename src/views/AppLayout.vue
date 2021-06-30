@@ -12,12 +12,19 @@
     <div class="container mx-auto max-w-2xl h-full">
       <HeaderBar :user="user" />
       <NavBar v-if="initialised && $route.name != 'SignUp'" />
-      <div class="h-full w-full py-12 md:pb-0 md:pl-16">
-        <router-view
-          v-if="initialised"
-          @refreshuser="getUser"
-          class="border-r border-gray-500 h-full"
-        />
+      <div
+        class="
+          overflow-y-scroll
+          h-screen
+          w-full
+          py-12
+          md:pb-0
+          md:pl-16
+          md:border-r
+          border-gray-500
+        "
+      >
+        <router-view v-if="initialised" @refreshuser="getUser" />
       </div>
     </div>
   </div>
@@ -44,7 +51,7 @@
         const token = await this.$auth.getTokenSilently();
         console.log(token);
         try {
-          const { data } = await axios.get("/api/profile", {
+          const { data } = await axios.get("/api/users/me", {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -61,9 +68,3 @@
     },
   };
 </script>
-
-<style lang="scss">
-  html {
-    @apply overflow-y-scroll;
-  }
-</style>
