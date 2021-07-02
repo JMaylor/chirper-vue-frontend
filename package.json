@@ -19,8 +19,8 @@
     "primevue": "^3.5.1",
     "tailwindcss-interaction-variants": "^5.0.0",
     "vue": "^3.0.5",
-    "vue-router": "^4.0.7",
-    "vuex": "^4.0.0"
+    "vue-router": "^4.0.10",
+    "vuex": "^4.0.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.2.2",
