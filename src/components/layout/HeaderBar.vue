@@ -24,6 +24,7 @@
     >
       <div class="flex items-center space-x-4">
         <font-awesome-icon size="lg" icon="crow" class="text-blue-500" />
+        {{ test }}
         <span class="text-2xl font-bold">{{ $route.name }}</span>
       </div>
       <div class="flex items-center space-x-4" v-if="user">
@@ -35,7 +36,7 @@
           alt="profile"
           class="rounded-full h-8 cursor-pointer"
           @click="
-            $router.push({ name: 'User', params: { userId: user.user_id } })
+            $router.push({ name: 'User', params: { handle: user.user_id } })
           "
           referrerpolicy="no-referrer"
         />
@@ -49,6 +50,11 @@
     name: "HeaderBar",
     props: {
       user: Object,
+    },
+    computed: {
+      test() {
+        return this.$store.state.count;
+      },
     },
   };
 </script>

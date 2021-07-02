@@ -24,7 +24,7 @@
           border-gray-500
         "
       >
-        <router-view v-if="initialised" @refreshuser="getUser" />
+        <router-view v-if="initialised" @refresh="getUser" />
       </div>
     </div>
   </div>
@@ -51,7 +51,7 @@
         const token = await this.$auth.getTokenSilently();
         console.log(token);
         try {
-          const { data } = await axios.get("/api/users/me", {
+          const { data } = await axios.get("/api/user/me", {
             headers: {
               Authorization: `Bearer ${token}`,
             },

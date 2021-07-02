@@ -1,6 +1,7 @@
 import createAuth0Client from "@auth0/auth0-spa-js";
 import { computed, reactive, watchEffect } from "vue";
-// import axios from "axios";
+import axios from "axios";
+import store from "@/store/index.js";
 
 let client;
 const state = reactive({
@@ -60,7 +61,7 @@ function logout(o) {
   return client.logout(o);
 }
 
-const authPlugin = {
+export const authPlugin = {
   isAuthenticated: computed(() => state.isAuthenticated),
   loading: computed(() => state.loading),
   user: computed(() => state.user),
@@ -132,6 +133,7 @@ export const setupAuth = async (options, callbackRedirect) => {
     // Initialize our internal authentication state
     state.isAuthenticated = await client.isAuthenticated();
     state.user = await client.getUser();
+
     // if (state.user)
     //   try {
     //     await axios.post("/api/createUser", state.user);

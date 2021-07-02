@@ -10,14 +10,10 @@
 </template>
 
 <script>
-  import FeedChirp from "@/components/feed/FeedChirp.vue";
   import axios from "axios";
 
   export default {
     name: "Chirp",
-    components: {
-      FeedChirp,
-    },
     data() {
       return {
         chirp: null,

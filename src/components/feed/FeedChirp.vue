@@ -5,13 +5,16 @@
         referrerpolicy="no-referrer"
         :src="chirp.picture"
         :alt="chirp.user_name"
-        class="h-12 rounded-full"
+        class="h-12 rounded-full cursor-pointer"
+        @click="
+          $router.push({ name: 'User', params: { handle: chirp.handle } })
+        "
       />
       <div class="space-y-2 flex-grow">
         <div class="flex space-x-2 items-center whitespace-nowrap">
           <router-link
             class="rounded-full group focus:outline-none"
-            :to="{ name: 'User', params: { userId: chirp.handle } }"
+            :to="{ name: 'User', params: { handle: chirp.handle } }"
             ><span
               class="font-bold mr-2 group-hover:underline group-focus:underline"
               >{{ chirp.user_name }}</span

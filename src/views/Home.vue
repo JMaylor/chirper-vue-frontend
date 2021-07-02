@@ -1,6 +1,8 @@
 <template>
   <div class="divide-y divide-gray-500">
+    <LoadingIcon v-if="loading" />
     <FeedChirp
+      v-else
       v-for="chirp in chirps"
       :key="chirp.chirp_id"
       :chirp="chirp"
@@ -11,17 +13,14 @@
 </template>
 
 <script>
-  import FeedChirp from "@/components/feed/FeedChirp.vue";
   import axios from "axios";
 
   export default {
     name: "Home",
-    components: {
-      FeedChirp,
-    },
     data() {
       return {
         chirps: [],
+        loading: true,
       };
     },
     methods: {
@@ -33,15 +32,25 @@
         chirp.rechirped = event;
         chirp.rechirps += event ? 1 : -1;
       },
+      async loadChirps() {
+        this.loading = true;
+        try {
+          const token = await this.$auth.getTokenSilently();
+          const { data } = await axios.get("/api/chirps", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          this.chirps = data;
+          this.loading = false;
+        } catch (err) {
+          alert(err);
+          this.loading = false;
+        }
+      },
     },
-    async mounted() {
-      const token = await this.$auth.getTokenSilently();
-      const { data } = await axios.get("/api/chirps", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      this.chirps = data;
+    mounted() {
+      this.loadChirps();
     },
   };
 </script>

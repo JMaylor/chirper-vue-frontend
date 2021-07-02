@@ -3,6 +3,11 @@
     @submit.prevent="signUp"
     class="text-black space-y-2 flex flex-col mt-4"
   >
+    <img
+      :src="user.picture"
+      alt="user.name"
+      class="rounded-full w-16 mx-auto"
+    />
     <div class="flex items-center justify-center">
       <label class="block w-24 text-gray-700 text-sm font-semibold">
         Email
@@ -88,21 +93,35 @@
         />
       </div>
     </div>
-
-    <img :src="user.picture" alt="user.name" class="rounded-full w-16" />
+    <div class="flex items-center justify-center">
+      <label class="block w-24 text-gray-700 text-sm font-semibold">
+        Bio
+      </label>
+      <input
+        class="
+          text-sm
+          appearance-none
+          rounded
+          w-64
+          py-2
+          px-3
+          text-gray-700
+          bg-gray-200
+          leading-tight
+          focus:outline-none
+          focus:shadow-outline
+          h-10
+        "
+        type="text"
+        required
+        v-model="bio"
+      />
+    </div>
     <button
       type="submit"
-      class="
-        bg-black
-        text-white
-        dark:text-black
-        dark:bg-white
-        w-16
-        mx-auto
-        rounded
-      "
+      class="bg-blue-500 px-4 py-2 rounded-full w-auto text-white mx-auto"
     >
-      sign up
+      <LoadingIcon v-if="loading" /><span v-else>Get Chirping!</span>
     </button>
   </form>
 </template>
@@ -111,10 +130,13 @@
   import axios from "axios";
   export default {
     name: "SignUp",
+    emits: ["refresh"],
     data() {
       return {
         name: null,
         handle: null,
+        bio: null,
+        loading: false,
       };
     },
     computed: {
@@ -126,11 +148,13 @@
           user_name: this.name,
           handle: this.handle,
           picture: this.user.picture,
+          bio: this.bio,
         };
       },
     },
     methods: {
       async signUp() {
+        this.loading = true;
         const token = await this.$auth.getTokenSilently();
         try {
           await axios.post("/api/users", this.formData, {
@@ -138,15 +162,17 @@
               Authorization: `Bearer ${token}`,
             },
           });
-          this.$emit("refreshuser");
+          this.$emit("refresh");
           this.$router.push("/home");
         } catch (err) {
+          this.loading = false;
           alert(err);
         }
       },
     },
     created() {
       this.name = this.user.name;
+      this.bio = `Hey, I'm ${this.name}`;
     },
   };
 </script>

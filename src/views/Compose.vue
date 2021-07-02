@@ -1,21 +1,29 @@
 <template>
-  <form @submit.prevent="submitChirp" class="w-full p-4">
+  <form @submit.prevent="submitChirp" class="w-full p-4 space-y-2">
     <textarea
+      required
       maxlength="140"
+      minlength="1"
       v-model="text"
+      placeholder="What's happening?"
       rows="4"
       class="
         p-2
+        text-xl
         w-full
         rounded-lg
-        bg-blue-200
-        dark:bg-gray-800
+        bg-transparent
         resize-none
         focus:outline-none
         focus:ring
       "
     ></textarea>
-    <button type="submit">post</button>
+    <div class="flex justify-between items-center">
+      <button type="submit" class="bg-blue-500 px-4 py-2 rounded-full">
+        Chirp
+      </button>
+      <span :class="textColorClass">{{ chirpLength }}/140</span>
+    </div>
   </form>
 </template>
 
@@ -25,7 +33,7 @@
     name: "Compose",
     data() {
       return {
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum rutrum sodales. Nullam mattis fermentum libero, non volutpat.",
+        text: "",
       };
     },
     methods: {
@@ -48,6 +56,16 @@
           alert(error);
           console.error(error);
         }
+      },
+    },
+    computed: {
+      chirpLength() {
+        return this.text.length;
+      },
+      textColorClass() {
+        if (this.chirpLength == 140) return "text-red-500";
+        if (this.chirpLength >= 120) return "text-yellow-500";
+        return "";
       },
     },
   };

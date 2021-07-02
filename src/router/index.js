@@ -34,7 +34,7 @@ const routes = [
         component: () => import("@/views/Compose.vue"),
       },
       {
-        path: "/user/:userId",
+        path: "/user/:handle",
         name: "User",
         component: () => import("@/views/User.vue"),
       },

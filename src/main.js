@@ -1,10 +1,11 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
+import store from "./store";
 import "./index.css";
 
 // core
-const app = createApp(App).use(router);
+const app = createApp(App).use(router).use(store);
 
 // fontawesome
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -46,6 +47,12 @@ import PrimeVue from "primevue/config";
 import AutoComplete from "primevue/autocomplete";
 app.use(PrimeVue);
 app.component("AutoComplete", AutoComplete);
+
+import LoadingIcon from "@/components/LoadingIcon.vue";
+app.component("LoadingIcon", LoadingIcon);
+
+import FeedChirp from "./components/feed/FeedChirp.vue";
+app.component("FeedChirp", FeedChirp);
 
 // auth0
 const authConfig = {

@@ -13,12 +13,8 @@
 
 <script>
   import axios from "axios";
-  import FeedChirp from "@/components/feed/FeedChirp.vue";
   export default {
     name: "Hashtag",
-    components: {
-      FeedChirp,
-    },
     data() {
       return {
         chirps: null,

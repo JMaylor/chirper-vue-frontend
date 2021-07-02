@@ -1,4 +1,17 @@
 <template>
+  <div class="border-b border-gray-500 p-4" v-if="user">
+    <div class="flex justify-between">
+      <img
+        :src="user.picture"
+        :alt="user.user_name"
+        class="h-32 rounded-full"
+      />
+      <button>follow</button>
+    </div>
+    <h2 class="text-2xl font-bold">{{ user.user_name }}</h2>
+    <h3 class="text-xl font-medium text-gray-500 mb-6">@{{ user.handle }}</h3>
+    <p>{{ user.bio }}</p>
+  </div>
   <div class="divide-y divide-gray-500">
     <FeedChirp
       v-for="chirp in chirps"
@@ -8,37 +21,18 @@
       @rechirped="toggleRechirp($event, chirp)"
     />
   </div>
-  <div
-    class="
-      fixed
-      bottom-16
-      md:bottom-6
-      right-6
-      bg-blue-500
-      h-16
-      w-16
-      rounded-full
-      flex
-      items-center
-      justify-center
-    "
-  >
-    <font-awesome-icon icon="feather-alt" size="lg" class="text-white" />
-  </div>
 </template>
 
 <script>
-  import FeedChirp from "@/components/feed/FeedChirp.vue";
   import axios from "axios";
 
   export default {
     name: "User",
-    components: {
-      FeedChirp,
-    },
+
     data() {
       return {
         chirps: [],
+        user: null,
       };
     },
     methods: {
@@ -50,18 +44,34 @@
         chirp.rechirped = event;
         chirp.rechirps += event ? 1 : -1;
       },
+      async loadUserChirps() {
+        const token = await this.$auth.getTokenSilently();
+        const { data } = await axios.get(
+          `/api/chirps/user/${this.$route.params.handle}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        this.chirps = data;
+      },
+      async loadUserProfile() {
+        const token = await this.$auth.getTokenSilently();
+        const { data } = await axios.get(
+          `/api/user/handle/${this.$route.params.handle}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        this.user = data;
+      },
     },
-    async mounted() {
-      const token = await this.$auth.getTokenSilently();
-      const { data } = await axios.get(
-        `/api/chirps/user/${this.$route.params.userId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      this.chirps = data;
+    mounted() {
+      this.loadUserChirps();
+      this.loadUserProfile();
     },
   };
 </script>
