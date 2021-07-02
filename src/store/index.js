@@ -7,7 +7,6 @@ const store = createStore({
   state() {
     return {
       count: 0,
-      test: this._vm,
     };
   },
   getters: {},
