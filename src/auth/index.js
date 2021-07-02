@@ -75,9 +75,54 @@ export const authPlugin = {
 };
 
 export const routeGuard = (to, from, next) => {
-  const { isAuthenticated, loading, loginWithRedirect } = authPlugin;
+  const { isAuthenticated, loading, loginWithRedirect, getTokenSilently } =
+    authPlugin;
 
-  const verify = () => {
+  const verify = async () => {
+    /*
+      Situations are:
+      1. user is not logged into google - in this case we always redirect to landing page.
+      2. user is logged into google but has not yet signed up - in which case we send them to signup.
+      3. user is logged into google and has account. let them continue, only they can't go to signup or landing.
+    */
+
+    // is the user logged in?
+    if (!isAuthenticated.value) {
+      if (to.name == "Landing") {
+        return next();
+      }
+      return next({ name: "Landing" });
+    } else {
+      // user is logged in to google.
+      // check if they have an account
+      const token = await getTokenSilently();
+      try {
+        if (!store.state.user) {
+          const { data } = await axios.get("/api/user/me", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          store.commit("setUser", data);
+        }
+        // if they have an account, then this try will exit
+        // so if we've made it here, they do have an account.
+        // redirect them to Home if they are trying to go to Landing or Signup
+        if (to.name == "Landing" || to.name == "SignUp") {
+          return next({ name: "Home" });
+        } else {
+          return next();
+        }
+      } catch (err) {
+        if (to.name == "SignUp") {
+          return next();
+        }
+        // if we had an error retreiving their account - send to signup page.
+        return next({ name: "SignUp" });
+      }
+    }
+
+    /*
     if (to.name == "Landing") {
       if (isAuthenticated.value) {
         return next({ name: "Home" });
@@ -92,6 +137,7 @@ export const routeGuard = (to, from, next) => {
 
     // Otherwise, log in
     loginWithRedirect({ appState: { targetUrl: to.fullPath } });
+    */
   };
 
   // If loading has already finished, check our auth state using `fn()`
@@ -144,6 +190,7 @@ export const setupAuth = async (options, callbackRedirect) => {
   }
 
   return {
+    authPlugin,
     install: (app) => {
       app.config.globalProperties.$auth = authPlugin;
     },

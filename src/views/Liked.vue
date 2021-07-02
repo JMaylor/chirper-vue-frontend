@@ -45,7 +45,6 @@
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(data);
       this.chirps = data;
     },
   };

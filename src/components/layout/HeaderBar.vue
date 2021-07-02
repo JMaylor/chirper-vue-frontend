@@ -47,12 +47,12 @@
 <script>
   export default {
     name: "HeaderBar",
-    props: {
-      user: Object,
-    },
     computed: {
       test() {
         return this.$store.state.count;
+      },
+      user() {
+        return this.$store.state.user;
       },
     },
   };

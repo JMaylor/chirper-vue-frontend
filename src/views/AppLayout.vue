@@ -10,8 +10,8 @@
     "
   >
     <div class="container mx-auto max-w-2xl h-full">
-      <HeaderBar :user="user" />
-      <NavBar v-if="initialised && $route.name != 'SignUp'" />
+      <HeaderBar />
+      <NavBar v-if="$route.name != 'SignUp'" />
       <div
         class="
           overflow-y-scroll
@@ -24,7 +24,7 @@
           border-gray-500
         "
       >
-        <router-view v-if="initialised" @refresh="getUser" />
+        <router-view />
       </div>
     </div>
   </div>
@@ -33,38 +33,11 @@
 <script>
   import HeaderBar from "@/components/layout/HeaderBar.vue";
   import NavBar from "@/components/layout/NavBar.vue";
-  import axios from "axios";
   export default {
     name: "AppLayout",
     components: {
       HeaderBar,
       NavBar,
-    },
-    data() {
-      return {
-        user: null,
-        initialised: false,
-      };
-    },
-    methods: {
-      async getUser() {
-        const token = await this.$auth.getTokenSilently();
-        console.log(token);
-        try {
-          const { data } = await axios.get("/api/user/me", {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          this.user = data;
-        } catch (err) {
-          await this.$router.push("/signup");
-        }
-        this.initialised = true;
-      },
-    },
-    mounted() {
-      this.getUser();
     },
   };
 </script>

@@ -67,5 +67,6 @@ function callbackRedirect(appState) {
 }
 
 setupAuth(authConfig, callbackRedirect).then((auth) => {
+  store.commit("setAuth", auth.authPlugin);
   app.use(auth).mount("#app");
 });
