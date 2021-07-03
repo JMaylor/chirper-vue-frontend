@@ -1,5 +1,6 @@
 <template>
   <div class="p-4 w-full">
+    <!-- <Toast position="bottom-center" /> -->
     <div class="flex w-full space-x-2">
       <img
         referrerpolicy="no-referrer"
@@ -30,7 +31,7 @@
           <!-- Comment -->
           <div class="flex items-center space-x-2">
             <font-awesome-icon :icon="['far', 'comment']" />
-            <!-- <span class="text-sm">{{ chirp.comments.length }}</span> -->
+            <span class="text-sm">0</span>
           </div>
 
           <!-- Like -->
@@ -133,7 +134,7 @@
 
           <!-- Share -->
           <button
-            @click="copyShareLink"
+            v-clipboard:copy="shareLink"
             class="
               action-container
               hover:text-blue-500
@@ -222,6 +223,9 @@
         if (handle.length < this.availableHandleLength) return handle;
         return `${handle.substr(0, this.availableHandleLength - 3)}...`;
       },
+      shareLink() {
+        return `${window.location.origin}/chirp/${this.chirp.chirp_id}`;
+      },
     },
     methods: {
       async toggleLike() {
@@ -270,11 +274,18 @@
         }
         this.rechirpDisabled = false;
       },
+      // onCopy() {
+      //   this.$toast.add({
+      //     severity: "info",
+      //     summary: "Link Copied",
+      //     life: 3000,
+      //   });
+      // },
     },
   };
 </script>
 
-<style lang="scss" scoped>
+<style>
   .action-container {
     @apply flex items-center group space-x-2 px-1 focus:outline-none;
   }
