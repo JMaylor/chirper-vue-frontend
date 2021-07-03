@@ -34,7 +34,7 @@
     </div>
     <div class="flex items-center justify-center">
       <label class="block w-24 text-gray-700 text-sm font-semibold">
-        Name
+        Display Name
       </label>
       <input
         class="
