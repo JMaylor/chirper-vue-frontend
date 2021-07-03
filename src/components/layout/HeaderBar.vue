@@ -35,7 +35,7 @@
           alt="profile"
           class="rounded-full h-8 cursor-pointer"
           @click="
-            $router.push({ name: 'User', params: { handle: user.user_id } })
+            $router.push({ name: 'User', params: { handle: user.handle } })
           "
           referrerpolicy="no-referrer"
         />
