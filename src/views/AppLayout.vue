@@ -41,3 +41,18 @@
     },
   };
 </script>
+
+<style lang="scss">
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+    // -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+
+  ::-webkit-scrollbar {
+    @apply bg-transparent w-2;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gradient-to-b from-blue-400 to-blue-700 rounded-full;
+  }
+</style>
