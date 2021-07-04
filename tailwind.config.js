@@ -1,3 +1,5 @@
+const colors = require("tailwindcss/colors");
+
 module.exports = {
   purge: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   darkMode: "media",
@@ -8,6 +10,9 @@ module.exports = {
       },
       transitionProperty: {
         fill: "fill",
+      },
+      colors: {
+        pink: colors.rose,
       },
     },
   },
