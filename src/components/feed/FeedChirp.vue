@@ -33,9 +33,9 @@
           <!-- Like Button -->
           <ChirpAction
             :buttonClasses="{
-              'hover:text-purple-500 focus-visible:text-purple-500': true,
+              'hover:text-yellow-500 focus-visible:text-yellow-500': true,
             }"
-            :svgContainerClasses="'bg-purple-900 group-focus-visible:ring-purple-500'"
+            :svgContainerClasses="'bg-yellow-900 group-focus-visible:ring-yellow-500'"
           >
             <template v-slot:default>{{ chirp.comments }}</template>
             <template v-slot:path>
@@ -73,10 +73,10 @@
           <ChirpAction
             @click="toggleRechirp"
             :buttonClasses="{
-              'text-green-500': chirp.rechirped,
-              'hover:text-green-500 focus-visible:text-green-500': true,
+              'text-green-600': chirp.rechirped,
+              'hover:text-green-600 focus-visible:text-green-600': true,
             }"
-            :svgContainerClasses="'bg-green-900 group-focus-visible:ring-green-500'"
+            :svgContainerClasses="'bg-green-900 group-focus-visible:ring-green-600'"
           >
             <template v-slot:default>{{ chirp.rechirps }}</template>
             <template v-slot:path>
