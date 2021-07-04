@@ -60,3 +60,9 @@
     },
   };
 </script>
+
+<style>
+  .action-container {
+    @apply flex items-center group space-x-2 px-1 focus:outline-none;
+  }
+</style>
