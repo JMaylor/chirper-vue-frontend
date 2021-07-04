@@ -29,10 +29,51 @@
         <!-- <span class="whitespace-pre-wrap">{{ chirp.text }}</span> -->
         <div class="flex justify-between items-center pr-8 text-gray-500">
           <!-- Comment -->
-          <div class="flex items-center space-x-2">
-            <font-awesome-icon :icon="['far', 'comment']" />
-            <span class="text-sm">0</span>
-          </div>
+          <button
+            class="
+              action-container
+              hover:text-purple-500
+              focus-visible:text-purple-500
+            "
+          >
+            <div
+              class="
+                h-8
+                w-8
+                flex
+                rounded-full
+                items-center
+                justify-center
+                space-x-2
+                transition
+                duration-200
+                bg-opacity-0 bg-purple-900
+                group-hover:bg-opacity-10
+                dark:group-hover:bg-opacity-30
+                group-focus-visible:bg-opacity-10
+                dark:group-focus-visible:bg-opacity-30
+                group-focus-visible:ring-2 group-focus-visible:ring-purple-500
+              "
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                />
+              </svg>
+            </div>
+            <span class="text-sm transition duration-200">{{
+              chirp.comments
+            }}</span>
+          </button>
 
           <!-- Like -->
           <button
@@ -42,7 +83,7 @@
               hover:text-pink-500
               focus-visible:text-pink-500
             "
-            :class="{ 'text-pink-800': chirp.liked }"
+            :class="{ 'text-pink-500': chirp.liked }"
           >
             <div
               class="
@@ -65,8 +106,8 @@
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5"
-                fill="none"
+                class="h-5 w-5 transition"
+                :fill="chirp.liked ? 'currentColor' : 'transparent'"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
@@ -91,7 +132,7 @@
               hover:text-green-500
               focus-visible:text-green-500
             "
-            :class="{ 'text-green-800': chirp.rechirped }"
+            :class="{ 'text-green-500': chirp.rechirped }"
           >
             <div
               class="
@@ -153,10 +194,11 @@
                 transition
                 duration-200
                 bg-opacity-0 bg-blue-900
-                group-hover:bg-opacity-30
-                group-focus-visible:bg-opacity-30
-                group-focus-visible:ring-2
-                group-focus-visible:ring-blue-500
+                group-hover:bg-opacity-10
+                dark:group-hover:bg-opacity-30
+                group-focus-visible:bg-opacity-10
+                dark:group-focus-visible:bg-opacity-30
+                group-focus-visible:ring-2 group-focus-visible:ring-blue-500
               "
             >
               <svg
