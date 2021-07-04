@@ -25,10 +25,18 @@
         return this.$route.params.hashtag;
       },
     },
+    watch: {
+      hashtag: {
+        immediate: true,
+        handler(hashtag) {
+          if (hashtag) this.getChirps(hashtag);
+        },
+      },
+    },
     methods: {
-      async getChirps() {
+      async getChirps(hashtag) {
         const token = await this.$auth.getTokenSilently();
-        const { data } = await axios.get(`/api/chirps/hashtag/${this.hashtag}`, {
+        const { data } = await axios.get(`/api/chirps/hashtag/${hashtag}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -43,12 +51,6 @@
         chirp.rechirped = event;
         chirp.rechirps += event ? 1 : -1;
       },
-    },
-    mounted() {
-      this.getChirps();
-    },
-    updated() {
-      this.getChirps();
     },
   };
 </script>
