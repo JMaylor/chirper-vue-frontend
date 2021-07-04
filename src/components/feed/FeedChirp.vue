@@ -30,7 +30,7 @@
 
         <!-- Chirp Actions -->
         <div class="flex justify-between items-center pr-8 text-gray-500">
-          <!-- Like Button -->
+          <!-- Comment Button -->
           <ChirpAction
             :buttonClasses="{
               'hover:text-yellow-500 focus-visible:text-yellow-500': true,
