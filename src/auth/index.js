@@ -95,10 +95,11 @@ export const routeGuard = (to, from, next) => {
     } else {
       // user is logged in to google.
       // check if they have an account
-      const token = await getTokenSilently();
-      console.log(token);
+
       try {
         if (!store.state.user) {
+          const token = await getTokenSilently();
+          console.log(token);
           const { data } = await axios.get("/api/user/me", {
             headers: {
               Authorization: `Bearer ${token}`,
