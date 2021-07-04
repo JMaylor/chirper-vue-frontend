@@ -111,9 +111,6 @@
           <font-awesome-icon size="lg" :icon="['fas', 'sign-out-alt']" />
         </div>
       </button>
-      <!-- <button @click="logout" class="w-full text-gray-500">
-        <font-awesome-icon size="lg" :icon="['fas', 'sign-out-alt']" />
-      </button> -->
     </div>
   </nav>
 </template>
