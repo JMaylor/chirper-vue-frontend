@@ -77,6 +77,7 @@
         class="
           transition
           m-2
+          md:mt-auto
           w-full
           flex
           items-center
