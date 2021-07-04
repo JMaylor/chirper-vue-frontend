@@ -60,6 +60,12 @@
               group-focus-visible:ring-2
               group-focus-visible:ring-blue-500
               group-focus-visible:text-blue-500
+              bg-opacity-0 bg-blue-900
+              hover:bg-opacity-10
+              hover:text-blue-500
+              dark:hover:bg-opacity-30
+              group-focus-visible:bg-opacity-10
+              dark:group-focus-visible:bg-opacity-30
             "
           >
             <font-awesome-icon size="lg" :icon="icon" />
@@ -94,6 +100,12 @@
             group-focus-visible:ring-2
             group-focus-visible:ring-red-500
             group-focus-visible:text-red-500
+            bg-opacity-0 bg-red-900
+            hover:bg-opacity-10
+            hover:text-red-500
+            dark:hover:bg-opacity-30
+            group-focus-visible:bg-opacity-10
+            dark:group-focus-visible:bg-opacity-30
           "
         >
           <font-awesome-icon size="lg" :icon="['fas', 'sign-out-alt']" />
