@@ -44,12 +44,12 @@
 
 <style lang="scss">
   ::-webkit-scrollbar-track {
-    @apply bg-transparent;
+    @apply bg-gray-500;
     // -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   }
 
   ::-webkit-scrollbar {
-    @apply bg-transparent w-2;
+    @apply bg-gray-500 w-1;
   }
 
   ::-webkit-scrollbar-thumb {
