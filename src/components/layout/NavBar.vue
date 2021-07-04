@@ -18,9 +18,7 @@
         w-full
         h-12
         md:h-full
-        md:space-y-6
         md:items-center
-        md:p-4
         flex
         md:flex-col
         justify-between
@@ -37,14 +35,73 @@
         <button
           @click="navigate"
           :class="{ 'text-blue-500': isActive }"
-          class="w-full text-gray-500"
+          class="
+            m-2
+            w-full
+            flex
+            items-center
+            justify-center
+            rounded-full
+            text-gray-500
+            focus:outline-none
+            group
+          "
         >
-          <font-awesome-icon size="lg" :icon="icon" />
+          <div
+            class="
+              transition
+              duration-200
+              rounded-full
+              w-10
+              h-10
+              flex
+              items-center
+              justify-center
+              group-focus-visible:ring-2
+              group-focus-visible:ring-blue-500
+              group-focus-visible:text-blue-500
+            "
+          >
+            <font-awesome-icon size="lg" :icon="icon" />
+          </div>
         </button>
       </router-link>
-      <button @click="logout" class="w-full text-gray-500">
-        <font-awesome-icon size="lg" :icon="['fas', 'sign-out-alt']" />
+      <button
+        @click="logout"
+        class="
+          transition
+          m-2
+          w-full
+          flex
+          items-center
+          justify-center
+          rounded-full
+          text-gray-500
+          focus:outline-none
+          group
+        "
+      >
+        <div
+          class="
+            transition
+            duration-200
+            rounded-full
+            w-10
+            h-10
+            flex
+            items-center
+            justify-center
+            group-focus-visible:ring-2
+            group-focus-visible:ring-red-500
+            group-focus-visible:text-red-500
+          "
+        >
+          <font-awesome-icon size="lg" :icon="['fas', 'sign-out-alt']" />
+        </div>
       </button>
+      <!-- <button @click="logout" class="w-full text-gray-500">
+        <font-awesome-icon size="lg" :icon="['fas', 'sign-out-alt']" />
+      </button> -->
     </div>
   </nav>
 </template>
@@ -57,9 +114,9 @@
         routes: [
           { name: "Home", icon: "home" },
           { name: "Search", icon: "search" },
-          { name: "Liked", icon: ["far", "heart"] },
-          { name: "Settings", icon: "cog" },
           { name: "Compose", icon: "feather-alt" },
+          { name: "Liked", icon: ["far", "heart"] },
+          // { name: "Settings", icon: "cog" },
         ],
       };
     },

@@ -13,7 +13,7 @@ module.exports = {
       backgroundOpacity: ["group-focus-visible"],
       ringColor: ["group-focus-visible"],
       ringWidth: ["group-focus-visible"],
-      textColor: ["focus-visible"],
+      textColor: ["focus-visible", "group-focus-visible"],
       textDecoration: ["group-focus"],
     },
   },
