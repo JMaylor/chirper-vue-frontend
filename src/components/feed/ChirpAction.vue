@@ -52,6 +52,7 @@
       fill: {
         type: String,
         required: false,
+        default: "none",
       },
       svgContainerClasses: {
         type: String,
