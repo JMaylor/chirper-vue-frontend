@@ -27,196 +27,86 @@
         </div>
         <ChirpWithLinks :text="chirp.body" />
         <!-- <span class="whitespace-pre-wrap">{{ chirp.text }}</span> -->
+
+        <!-- Chirp Actions -->
         <div class="flex justify-between items-center pr-8 text-gray-500">
-          <!-- Comment -->
-          <button
-            class="
-              action-container
-              hover:text-purple-500
-              focus-visible:text-purple-500
-            "
+          <!-- Like Button -->
+          <ChirpAction
+            :buttonClasses="{
+              'hover:text-purple-500 focus-visible:text-purple-500': true,
+            }"
+            :svgContainerClasses="'bg-purple-900 group-focus-visible:ring-purple-500'"
           >
-            <div
-              class="
-                h-8
-                w-8
-                flex
-                rounded-full
-                items-center
-                justify-center
-                space-x-2
-                transition
-                duration-200
-                bg-opacity-0 bg-purple-900
-                group-hover:bg-opacity-10
-                dark:group-hover:bg-opacity-30
-                group-focus-visible:bg-opacity-10
-                dark:group-focus-visible:bg-opacity-30
-                group-focus-visible:ring-2 group-focus-visible:ring-purple-500
-              "
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                />
-              </svg>
-            </div>
-            <span class="text-sm transition duration-200">{{
-              chirp.comments
-            }}</span>
-          </button>
+            <template v-slot:default>{{ chirp.comments }}</template>
+            <template v-slot:path>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+              />
+            </template>
+          </ChirpAction>
 
-          <!-- Like -->
-          <button
+          <!-- Like Button -->
+          <ChirpAction
             @click="toggleLike"
-            class="
-              action-container
-              hover:text-pink-500
-              focus-visible:text-pink-500
-            "
-            :class="{ 'text-pink-500': chirp.liked }"
+            :buttonClasses="{
+              'text-pink-500': chirp.liked,
+              'hover:text-pink-500 focus-visible:text-pink-500': true,
+            }"
+            :svgContainerClasses="'bg-pink-900 group-focus-visible:ring-pink-500'"
+            :fill="chirp.liked ? 'currentColor' : 'transparent'"
           >
-            <div
-              class="
-                h-8
-                w-8
-                flex
-                rounded-full
-                items-center
-                justify-center
-                space-x-2
-                transition
-                duration-200
-                bg-opacity-0 bg-pink-900
-                group-hover:bg-opacity-10
-                dark:group-hover:bg-opacity-30
-                group-focus-visible:bg-opacity-10
-                dark:group-focus-visible:bg-opacity-30
-                group-focus-visible:ring-2 group-focus-visible:ring-pink-500
-              "
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5 transition"
-                :fill="chirp.liked ? 'currentColor' : 'transparent'"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                />
-              </svg>
-            </div>
-            <span class="text-sm transition duration-200">{{
-              chirp.likes
-            }}</span>
-          </button>
+            <template v-slot:default>{{ chirp.likes }}</template>
+            <template v-slot:path>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              />
+            </template>
+          </ChirpAction>
 
-          <!-- Rechirp -->
-          <button
+          <!-- Rechirp Button -->
+          <ChirpAction
             @click="toggleRechirp"
-            class="
-              action-container
-              hover:text-green-500
-              focus-visible:text-green-500
-            "
-            :class="{ 'text-green-500': chirp.rechirped }"
+            :buttonClasses="{
+              'text-green-500': chirp.rechirped,
+              'hover:text-green-500 focus-visible:text-green-500': true,
+            }"
+            :svgContainerClasses="'bg-green-900 group-focus-visible:ring-green-500'"
           >
-            <div
-              class="
-                h-8
-                w-8
-                flex
-                rounded-full
-                items-center
-                justify-center
-                space-x-2
-                transition
-                duration-200
-                bg-opacity-0 bg-green-900
-                group-hover:bg-opacity-10
-                dark:group-hover:bg-opacity-30
-                group-focus-visible:bg-opacity-10
-                dark:group-focus-visible:bg-opacity-30
-                group-focus-visible:ring-2 group-focus-visible:ring-green-500
-              "
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                />
-              </svg>
-            </div>
-            <span class="text-sm transition duration-200">{{
-              chirp.rechirps
-            }}</span>
-          </button>
+            <template v-slot:default>{{ chirp.rechirps }}</template>
+            <template v-slot:path>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+              />
+            </template>
+          </ChirpAction>
 
-          <!-- Share -->
-          <button
+          <!-- Share Button -->
+          <ChirpAction
             v-clipboard:copy="shareLink"
-            class="
-              action-container
-              hover:text-blue-500
-              focus-visible:text-blue-500
-            "
+            v-clipboard:success="onCopy"
+            :buttonClasses="{
+              'hover:text-blue-500 focus-visible:text-blue-500': true,
+            }"
+            :svgContainerClasses="'bg-blue-900 group-focus-visible:ring-blue-500'"
           >
-            <div
-              class="
-                h-8
-                w-8
-                flex
-                rounded-full
-                items-center
-                justify-center
-                space-x-2
-                transition
-                duration-200
-                bg-opacity-0 bg-blue-900
-                group-hover:bg-opacity-10
-                dark:group-hover:bg-opacity-30
-                group-focus-visible:bg-opacity-10
-                dark:group-focus-visible:bg-opacity-30
-                group-focus-visible:ring-2 group-focus-visible:ring-blue-500
-              "
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
-                />
-              </svg>
-            </div>
-          </button>
+            <template v-slot:path>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
+              />
+            </template>
+          </ChirpAction>
         </div>
       </div>
     </div>
@@ -230,11 +120,13 @@
   TimeAgo.locale(en);
   const timeAgo = new TimeAgo("en-GB");
   import ChirpWithLinks from "./ChirpWithLinks.vue";
+  import ChirpAction from "./ChirpAction.vue";
 
   export default {
     name: "FeedChirp",
     components: {
       ChirpWithLinks,
+      ChirpAction,
     },
     props: {
       chirp: { type: Object, required: true },
@@ -316,13 +208,9 @@
         }
         this.rechirpDisabled = false;
       },
-      // onCopy() {
-      //   this.$toast.add({
-      //     severity: "info",
-      //     summary: "Link Copied",
-      //     life: 3000,
-      //   });
-      // },
+      onCopy() {
+        alert("link copied to clipboard");
+      },
     },
   };
 </script>
