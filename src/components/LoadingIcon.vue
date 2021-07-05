@@ -2,12 +2,12 @@
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
-    class="m-auto block"
+    class="m-auto block w-32"
     viewBox="0 0 100 100"
     preserveAspectRatio="xMidYMid"
   >
     <g transform="translate(20 50)">
-      <circle cx="0" cy="0" r="6" fill="#e15b64">
+      <circle cx="0" cy="0" r="6" class="fill-current text-yellow-500">
         <animateTransform
           attributeName="transform"
           type="scale"
@@ -22,7 +22,7 @@
       </circle>
     </g>
     <g transform="translate(40 50)">
-      <circle cx="0" cy="0" r="6" fill="#f8b26a">
+      <circle cx="0" cy="0" r="6" class="fill-current text-pink-500">
         <animateTransform
           attributeName="transform"
           type="scale"
@@ -37,7 +37,7 @@
       </circle>
     </g>
     <g transform="translate(60 50)">
-      <circle cx="0" cy="0" r="6" fill="#abbd81">
+      <circle cx="0" cy="0" r="6" class="fill-current text-green-500">
         <animateTransform
           attributeName="transform"
           type="scale"
@@ -52,7 +52,7 @@
       </circle>
     </g>
     <g transform="translate(80 50)">
-      <circle cx="0" cy="0" r="6" fill="#81a3bd">
+      <circle cx="0" cy="0" r="6" class="fill-current text-blue-500">
         <animateTransform
           attributeName="transform"
           type="scale"
