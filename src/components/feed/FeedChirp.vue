@@ -119,6 +119,7 @@
           </ChirpAction>
         </div>
         <ChirpComments
+          @increment="chirp.comments++"
           v-if="showComments"
           :chirpId="chirp.chirp_id"
         ></ChirpComments>
