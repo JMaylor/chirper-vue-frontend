@@ -5,10 +5,10 @@
         h-8
         w-8
         flex
+        relative
         rounded-full
         items-center
         justify-center
-        space-x-2
         transition
         duration-200
         bg-opacity-0
@@ -27,15 +27,29 @@
         viewBox="0 0 24 24"
         stroke="currentColor"
       >
-        <slot name="path">
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-          />
-        </slot>
+        <slot name="path" />
       </svg>
+      <div
+        class="
+          bg-gray-500
+          absolute
+          hidden
+          px-2
+          py-1
+          max-w-6xl
+          group-focus-visible:block
+          -bottom-7
+          left-1/2
+          transform
+          transition
+          duration-200
+          -translate-x-1/2
+          rounded
+          text-xs text-white
+        "
+      >
+        <slot name="tooltip">Tooltip</slot>
+      </div>
     </div>
     <span class="text-sm transition duration-200"><slot /></span>
   </button>
@@ -50,12 +64,12 @@
         required: true,
       },
       fill: {
-        type: String,
+        type: [Object, String],
         required: false,
         default: "none",
       },
       svgContainerClasses: {
-        type: String,
+        type: [Object, String],
         required: true,
       },
     },

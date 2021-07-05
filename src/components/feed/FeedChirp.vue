@@ -38,6 +38,7 @@
             :svgContainerClasses="'bg-yellow-900 group-focus-visible:ring-yellow-500'"
           >
             <template v-slot:default>{{ chirp.comments }}</template>
+            <template v-slot:tooltip>Comment</template>
             <template v-slot:path>
               <path
                 stroke-linecap="round"
@@ -59,6 +60,9 @@
             :fill="chirp.liked ? 'currentColor' : 'transparent'"
           >
             <template v-slot:default>{{ chirp.likes }}</template>
+            <template v-slot:tooltip>{{
+              chirp.liked ? "Unlike" : "Like"
+            }}</template>
             <template v-slot:path>
               <path
                 stroke-linecap="round"
@@ -73,17 +77,20 @@
           <ChirpAction
             @click="toggleRechirp"
             :buttonClasses="{
-              'text-green-600': chirp.rechirped,
-              'hover:text-green-600 focus-visible:text-green-600': true,
+              'text-green-500': chirp.rechirped,
+              'hover:text-green-500 focus-visible:text-green-500': true,
             }"
-            :svgContainerClasses="'bg-green-900 group-focus-visible:ring-green-600'"
+            :svgContainerClasses="'bg-green-900 group-focus-visible:ring-green-500'"
           >
             <template v-slot:default>{{ chirp.rechirps }}</template>
+            <template v-slot:tooltip>{{
+              chirp.rechirped ? "Unchirp" : "Rechirp"
+            }}</template>
             <template v-slot:path>
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                stroke-width="2"
+                :stroke-width="chirp.rechirped ? 2.5 : 2"
                 d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
               />
             </template>
@@ -98,6 +105,7 @@
             }"
             :svgContainerClasses="'bg-blue-900 group-focus-visible:ring-blue-500'"
           >
+            <template v-slot:tooltip>Share</template>
             <template v-slot:path>
               <path
                 stroke-linecap="round"
