@@ -32,8 +32,10 @@
         <div class="flex justify-between items-center pr-8 text-gray-500">
           <!-- Comment Button -->
           <ChirpAction
+            @click="showComments = !showComments"
             :buttonClasses="{
               'hover:text-yellow-500 focus-visible:text-yellow-500': true,
+              'text-yellow-500': showComments,
             }"
             :svgContainerClasses="'bg-yellow-900 group-focus-visible:ring-yellow-500'"
           >
@@ -118,6 +120,11 @@
             </template>
           </ChirpAction>
         </div>
+        <ChirpComments
+          @increment="chirp.comments++"
+          v-if="showComments"
+          :chirpId="chirp.chirp_id"
+        ></ChirpComments>
       </div>
     </div>
   </div>
@@ -131,12 +138,14 @@
   const timeAgo = new TimeAgo("en-GB");
   import ChirpWithLinks from "./ChirpWithLinks.vue";
   import ChirpAction from "./ChirpAction.vue";
+  import ChirpComments from "./ChirpComments.vue";
 
   export default {
     name: "FeedChirp",
     components: {
       ChirpWithLinks,
       ChirpAction,
+      ChirpComments,
     },
     props: {
       chirp: { type: Object, required: true },
@@ -145,11 +154,11 @@
       return {
         likeDisabled: false,
         rechirpDisabled: false,
+        showComments: false,
       };
     },
     computed: {
       time() {
-        // return dayjs(this.chirp.created_at).fromNow();
         return timeAgo.format(new Date(this.chirp.created_at), "twitter");
       },
       textWithLinks() {
