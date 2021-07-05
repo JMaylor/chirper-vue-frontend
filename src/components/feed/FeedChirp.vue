@@ -40,7 +40,9 @@
             :svgContainerClasses="'bg-yellow-900 group-focus-visible:ring-yellow-500'"
           >
             <template v-slot:default>{{ chirp.comments }}</template>
-            <template v-slot:tooltip>Comment</template>
+            <template v-slot:tooltip>{{
+              showComments ? "Hide" : "Show"
+            }}</template>
             <template v-slot:path>
               <path
                 stroke-linecap="round"
