@@ -18,7 +18,7 @@
 
       {{ showRechirp }} rechirped
     </div>
-    <!-- <Toast position="bottom-center" /> -->
+    <Toast position="bottom-center" />
     <div class="flex w-full space-x-2">
       <img
         referrerpolicy="no-referrer"
@@ -249,7 +249,11 @@
         this.rechirpDisabled = false;
       },
       onCopy() {
-        alert("link copied to clipboard");
+        this.$toast.add({
+          severity: "info",
+          summary: "Link Copied",
+          life: 2000,
+        });
       },
     },
   };

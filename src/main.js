@@ -4,8 +4,6 @@ import router from "./router";
 import store from "./store";
 import { VueClipboard } from "@soerenmartius/vue3-clipboard";
 import "./index.css";
-// import "primevue/resources/themes/vela-green/theme.css";
-// import "primevue/resources/primevue.min.css";
 
 // core
 const app = createApp(App).use(router).use(store).use(VueClipboard);
@@ -48,12 +46,12 @@ app.component("font-awesome-icon", FontAwesomeIcon);
 // primevue
 import PrimeVue from "primevue/config";
 import AutoComplete from "primevue/autocomplete";
-// import ToastService from "primevue/toastservice";
-// import Toast from "primevue/toast";
+import ToastService from "primevue/toastservice";
+import Toast from "primevue/toast";
 app.component("AutoComplete", AutoComplete);
-// app.component("Toast", Toast);
+app.component("Toast", Toast);
 app.use(PrimeVue);
-// app.use(ToastService);
+app.use(ToastService);
 
 import LoadingIcon from "@/components/LoadingIcon.vue";
 app.component("LoadingIcon", LoadingIcon);
