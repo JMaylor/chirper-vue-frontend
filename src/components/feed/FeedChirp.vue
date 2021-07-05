@@ -56,6 +56,7 @@
               'text-pink-500': chirp.liked,
               'hover:text-pink-500 focus-visible:text-pink-500': true,
             }"
+            :disabled="likeDisabled"
             :svgContainerClasses="'bg-pink-900 group-focus-visible:ring-pink-500'"
             :fill="chirp.liked ? 'currentColor' : 'transparent'"
           >
@@ -81,6 +82,7 @@
               'hover:text-green-500 focus-visible:text-green-500': true,
             }"
             :svgContainerClasses="'bg-green-900 group-focus-visible:ring-green-500'"
+            :disabled="rechirpDisabled"
           >
             <template v-slot:default>{{ chirp.rechirps }}</template>
             <template v-slot:tooltip>{{
