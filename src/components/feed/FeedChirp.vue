@@ -35,6 +35,7 @@
             @click="showComments = !showComments"
             :buttonClasses="{
               'hover:text-yellow-500 focus-visible:text-yellow-500': true,
+              'text-yellow-500': showComments,
             }"
             :svgContainerClasses="'bg-yellow-900 group-focus-visible:ring-yellow-500'"
           >
@@ -155,7 +156,6 @@
     },
     computed: {
       time() {
-        // return dayjs(this.chirp.created_at).fromNow();
         return timeAgo.format(new Date(this.chirp.created_at), "twitter");
       },
       textWithLinks() {
