@@ -6,7 +6,7 @@
         :alt="user.user_name"
         class="h-32 rounded-full"
       />
-      <button>follow</button>
+      <!-- <button>follow</button> -->
     </div>
     <h2 class="text-2xl font-bold">{{ user.user_name }}</h2>
     <h3 class="text-xl font-medium text-gray-500 mb-6">@{{ user.handle }}</h3>
@@ -16,6 +16,7 @@
     <FeedChirp
       v-for="chirp in chirps"
       :key="chirp.chirp_id"
+      :showRechirp="user.handle == chirp.handle ? null : user.user_name"
       :chirp="chirp"
       @liked="toggleLike($event, chirp)"
       @rechirped="toggleRechirp($event, chirp)"

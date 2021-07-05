@@ -1,5 +1,23 @@
 <template>
   <div class="p-4 w-full">
+    <div class="mb-2 text-gray-500" v-if="showRechirp">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5 transition-fill duration-200 inline-block"
+        :fill="fill"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+        />
+      </svg>
+
+      {{ showRechirp }} rechirped
+    </div>
     <!-- <Toast position="bottom-center" /> -->
     <div class="flex w-full space-x-2">
       <img
@@ -151,6 +169,7 @@
     },
     props: {
       chirp: { type: Object, required: true },
+      showRechirp: { type: String, required: false, default: null },
     },
     data() {
       return {
