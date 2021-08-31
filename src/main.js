@@ -3,6 +3,8 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import { VueClipboard } from "@soerenmartius/vue3-clipboard";
+import axios from "./services/axios";
+import VueAxios from "vue-axios";
 import "./index.css";
 
 // core
@@ -73,5 +75,9 @@ function callbackRedirect(appState) {
 
 setupAuth(authConfig, callbackRedirect).then((auth) => {
   store.commit("setAuth", auth.authPlugin);
-  app.use(auth).mount("#app");
+  app
+    .use(auth)
+    .use(VueAxios, axios)
+    .provide("axios", axios)
+    .mount("#app");
 });
