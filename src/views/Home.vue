@@ -12,45 +12,24 @@
   </div>
 </template>
 
-<script>
-  import axios from "axios";
+<script setup>
+import { ref, inject, onMounted } from 'vue'
 
-  export default {
-    name: "Home",
-    data() {
-      return {
-        chirps: [],
-        loading: true,
-      };
-    },
-    methods: {
-      toggleLike(event, chirp) {
-        chirp.liked = event;
-        chirp.likes += event ? 1 : -1;
-      },
-      toggleRechirp(event, chirp) {
-        chirp.rechirped = event;
-        chirp.rechirps += event ? 1 : -1;
-      },
-      async loadChirps() {
-        this.loading = true;
-        try {
-          const token = await this.$auth.getTokenSilently();
-          const { data } = await axios.get("/api/chirps", {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          this.chirps = data;
-          this.loading = false;
-        } catch (err) {
-          alert(err);
-          this.loading = false;
-        }
-      },
-    },
-    mounted() {
-      this.loadChirps();
-    },
-  };
+const loading = ref(false)
+const chirps = ref([])
+
+async function loadChirps() {
+  loading.value = true
+  try {
+    const axios = inject('axios')
+    const { data } = await axios.get("/api/chirps");
+    chirps.value = data
+  } catch (err) {
+    alert(`Something went wrong... ${err.response.data.message}`)
+  } finally {
+    loading.value = false
+  }
+}
+
+onMounted(() => loadChirps())
 </script>
