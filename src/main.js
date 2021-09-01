@@ -75,5 +75,10 @@ function callbackRedirect(appState) {
 
 setupAuth(authConfig, callbackRedirect).then((auth) => {
   store.commit("setAuth", auth.authPlugin);
-  app.use(auth).use(VueAxios, axios).provide("axios", axios).mount("#app");
+  app
+    .use(auth)
+    .provide("auth", auth.authPlugin)
+    .use(VueAxios, axios)
+    .provide("axios", axios)
+    .mount("#app");
 });
