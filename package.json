@@ -19,7 +19,7 @@
     "primeicons": "^4.1.0",
     "primevue": "^3.5.1",
     "tailwindcss-interaction-variants": "^5.0.0",
-    "vue": "^3.0.5",
+    "vue": "^3.2.6",
     "vue-axios": "^3.2.5",
     "vue-router": "^4.0.10",
     "vuex": "^4.0.1"
@@ -32,6 +32,6 @@
     "sass": "^1.32.13",
     "stylelint-config-recommended": "^5.0.0",
     "tailwindcss": "^2.1.4",
-    "vite": "^2.5.2"
+    "vite": "^2.5.3"
   }
 }
