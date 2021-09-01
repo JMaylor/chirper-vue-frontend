@@ -4,13 +4,13 @@
 
 <script setup>
 import { computed } from 'vue'
-defineProps({
+const props = defineProps({
   text: String
 })
 
 const transformedText = computed(() => {
   return {
-    template: `<span class="whitespace-pre-wrap">${this.text.replace(
+    template: `<span class="whitespace-pre-wrap">${props.text.replace(
       /#(\w+)/g,
       '<router-link class="hashtag" to="/hashtag/$1">#$1</router-link>'
     )}</span>`,
