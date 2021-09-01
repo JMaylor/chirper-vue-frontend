@@ -10,42 +10,24 @@
   </div>
 </template>
 
-<script>
-  import axios from "axios";
+<script setup>
+import { inject, ref, onMounted } from 'vue'
+const axios = inject("axios");
+const chirps = ref([])
 
-  export default {
-    name: "Liked",
-    data() {
-      return {
-        chirps: [],
-      };
-    },
-    computed: {
-      user() {
-        return this.$auth.user.value;
-      },
-      name() {
-        return this.user.name;
-      },
-    },
-    methods: {
-      toggleLike(event, chirp) {
-        chirp.liked = event;
-        chirp.likes += event ? 1 : -1;
-      },
-      toggleRechirp(event, chirp) {
-        chirp.rechirped = event;
-        chirp.rechirps += event ? 1 : -1;
-      },
-    },
-    async mounted() {
-      const token = await this.$auth.getTokenSilently();
-      const { data } = await axios.get("/api/chirps/liked", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      this.chirps = data;
-    },
-  };
+async function getLikedChirps() {
+  const { data } = await axios.get("chirps/liked");
+  chirps.value = data;
+}
+onMounted(getLikedChirps)
+
+function toggleLike(event, chirp) {
+  chirp.liked = event;
+  chirp.likes += event ? 1 : -1;
+};
+function toggleRechirp(event, chirp) {
+  chirp.rechirped = event;
+  chirp.rechirps += event ? 1 : -1;
+};
+
 </script>
