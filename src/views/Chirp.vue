@@ -9,37 +9,23 @@
   </div>
 </template>
 
-<script>
-  import axios from "axios";
+<script setup>
+import { inject, ref } from 'vue'
+import { useRoute } from 'vue-router'
 
-  export default {
-    name: "Chirp",
-    data() {
-      return {
-        chirp: null,
-      };
-    },
-    methods: {
-      toggleLike(value) {
-        this.chirp.liked = value;
-        this.chirp.likes += value ? 1 : -1;
-      },
-      toggleRechirp(value) {
-        this.chirp.rechirped = value;
-        this.chirp.rechirps += value ? 1 : -1;
-      },
-    },
-    async mounted() {
-      const token = await this.$auth.getTokenSilently();
-      const { data } = await axios.get(
-        `/api/chirp/${this.$route.params.chirpId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      this.chirp = data;
-    },
-  };
+const route = useRoute()
+const axios = inject("axios");
+const chirp = ref(null)
+
+axios.get(`chirp/${route.params.chirpId}`).then(({ data }) => chirp.value = data).catch(err => alert(err))
+
+function toggleLike(value) {
+  chirp.value.liked = value;
+  chirp.value.likes += value ? 1 : -1;
+}
+
+function toggleRechirp(value) {
+  chirp.value.rechirped = value;
+  chirp.value.rechirps += value ? 1 : -1;
+}
 </script>
