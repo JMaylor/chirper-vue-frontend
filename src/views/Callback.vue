@@ -2,21 +2,22 @@
   <div></div>
 </template>
 
-<script>
-  export default {
-    name: "Callback",
-    created() {
-      if (this.$route.query.error) {
-        this.$auth.logout({
-          returnTo:
-            window.location.origin +
-            `/error?error=${encodeURI(
-              this.$route.query.error
-            )}&error_description=${encodeURI(
-              this.$route.query.error_description
-            )}`,
-        });
-      }
-    },
-  };
+<script setup>
+import { useRoute } from 'vue-router';
+import { inject } from 'vue'
+
+const route = useRoute()
+const auth = inject('auth')
+
+if (route.query.error) {
+  auth.logout({
+    returnTo:
+      window.location.origin +
+      `/error?error=${encodeURI(
+        route.query.error
+      )}&error_description=${encodeURI(
+        route.query.error_description
+      )}`,
+  });
+}
 </script>
