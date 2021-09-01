@@ -31,5 +31,15 @@ async function loadChirps() {
   }
 }
 
+function toggleLike(event, chirp) {
+  chirp.liked = event;
+  chirp.likes += event ? 1 : -1;
+}
+
+function toggleRechirp(event, chirp) {
+  chirp.rechirped = event;
+  chirp.rechirps += event ? 1 : -1;
+}
+
 onMounted(() => loadChirps())
 </script>
