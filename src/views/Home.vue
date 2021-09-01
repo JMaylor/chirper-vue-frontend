@@ -22,10 +22,10 @@ async function loadChirps() {
   loading.value = true
   try {
     const axios = inject('axios')
-    const { data } = await axios.get("/api/chirps");
+    const { data } = await axios.get("chirps");
     chirps.value = data
-  } catch (err) {
-    alert(`Something went wrong... ${err.response.data.message}`)
+  } catch (error) {
+    alert(`Something went wrong... ${error}`)
   } finally {
     loading.value = false
   }
