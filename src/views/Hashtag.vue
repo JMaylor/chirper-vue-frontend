@@ -11,46 +11,30 @@
   </div>
 </template>
 
-<script>
-  import axios from "axios";
-  export default {
-    name: "Hashtag",
-    data() {
-      return {
-        chirps: null,
-      };
-    },
-    computed: {
-      hashtag() {
-        return this.$route.params.hashtag;
-      },
-    },
-    watch: {
-      hashtag: {
-        immediate: true,
-        handler(hashtag) {
-          if (hashtag) this.getChirps(hashtag);
-        },
-      },
-    },
-    methods: {
-      async getChirps(hashtag) {
-        const token = await this.$auth.getTokenSilently();
-        const { data } = await axios.get(`/api/chirps/hashtag/${hashtag}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        this.chirps = data;
-      },
-      toggleLike(event, chirp) {
-        chirp.liked = event;
-        chirp.likes += event ? 1 : -1;
-      },
-      toggleRechirp(event, chirp) {
-        chirp.rechirped = event;
-        chirp.rechirps += event ? 1 : -1;
-      },
-    },
-  };
+<script setup>
+import { ref, computed, watch, inject } from 'vue'
+import { useRoute } from 'vue-router'
+const axios = inject("axios");
+
+const chirps = ref(null)
+
+const route = useRoute()
+const hashtag = computed(() => route.params.hashtag)
+
+async function getChirps() {
+  const { data } = await axios.get(`chirps/hashtag/${hashtag.value}`);
+  chirps.value = data;
+}
+
+watch(hashtag, getChirps, { immediate: true })
+
+function toggleLike(event, chirp) {
+  chirp.liked = event;
+  chirp.likes += event ? 1 : -1;
+}
+
+function toggleRechirp(event, chirp) {
+  chirp.rechirped = event;
+  chirp.rechirps += event ? 1 : -1;
+}
 </script>
