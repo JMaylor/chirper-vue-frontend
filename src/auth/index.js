@@ -99,7 +99,6 @@ export const routeGuard = (to, from, next) => {
       try {
         if (!store.state.user) {
           const token = await getTokenSilently();
-          console.log(token);
           const { data } = await axios.get("/api/user/me", {
             headers: {
               Authorization: `Bearer ${token}`,
