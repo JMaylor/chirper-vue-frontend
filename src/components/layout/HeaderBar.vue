@@ -44,16 +44,11 @@
   </header>
 </template>
 
-<script>
-  export default {
-    name: "HeaderBar",
-    computed: {
-      test() {
-        return this.$store.state.count;
-      },
-      user() {
-        return this.$store.state.user;
-      },
-    },
-  };
+<script setup>
+import {computed} from 'vue'
+import {useStore} from 'vuex'
+
+const store = useStore()
+
+const user = computed(() => store.state.user)
 </script>
