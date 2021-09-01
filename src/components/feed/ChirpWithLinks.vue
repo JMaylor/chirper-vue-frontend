@@ -2,27 +2,24 @@
   <component v-bind:is="transformedText" />
 </template>
 
-<script>
-  export default {
-    name: "ChirpWithLinks",
-    props: {
-      text: String,
-    },
-    computed: {
-      transformedText() {
-        return {
-          template: `<span class="whitespace-pre-wrap">${this.text.replace(
-            /#(\w+)/g,
-            '<router-link class="hashtag" to="/hashtag/$1">#$1</router-link>'
-          )}</span>`,
-        };
-      },
-    },
+<script setup>
+import { computed } from 'vue'
+defineProps({
+  text: String
+})
+
+const transformedText = computed(() => {
+  return {
+    template: `<span class="whitespace-pre-wrap">${this.text.replace(
+      /#(\w+)/g,
+      '<router-link class="hashtag" to="/hashtag/$1">#$1</router-link>'
+    )}</span>`,
   };
+})
 </script>
 
 <style>
-  .hashtag {
-    @apply text-green-500;
-  }
+.hashtag {
+  @apply text-green-500;
+}
 </style>
